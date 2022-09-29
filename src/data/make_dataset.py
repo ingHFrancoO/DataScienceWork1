@@ -36,15 +36,11 @@ def main(input_filepath, output_filepath):
         stratify=y
     )
 
-    #x_train.to_parquet(f'{output_filepath}/x_train.parquet', index=False, engine='pyarrow')
-    #y_train.to_parquet(f'{output_filepath}/y_train.parquet', index = False)
-    #x_test.to_parquet(f'{output_filepath}/x_test.parquet', index = False)
-    #y_test.to_parquet(f'{output_filepath}/y_test.parquet', index = False)
-
-    x_train.to_csv(f'{output_filepath}/x_train.csv',
-                   index=False, engine='pyarrow')
+    x_train.to_parquet(f'{output_filepath}/x_train.parquet',
+                       index=False, engine='pyarrow')
     y_train.to_csv(f'{output_filepath}/y_train.csv', index=False)
-    x_test.to_csv(f'{output_filepath}/x_test.csv', index=False)
+    x_test.to_parquet(f'{output_filepath}/x_test.parquet',
+                      index=False, engine='pyarrow')
     y_test.to_csv(f'{output_filepath}/y_test.csv', index=False)
 
 
