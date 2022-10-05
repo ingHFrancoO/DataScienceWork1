@@ -1,1 +1,5 @@
 /data/raw/CellPhoneDs.cvs
+/data/interim/x_test.parquet
+/data/interim/x_train.parquet
+/data/interim/y_test.csv
+/data/interim/y_train.csv
