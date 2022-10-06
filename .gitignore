@@ -3,8 +3,8 @@
 /data/interim/x_train.parquet
 /data/interim/y_test.csv
 /data/interim/y_train.csv
-
 /notebooks/00_Plantilla_Trabajo_Final_Datos.ipynb
 /notebooks/1-readmited_preprocess.ipynb
 /notebooks/2-readmite_data_explorer.ipynb
 /notebooks/3-readmited_data.ipynb
+
