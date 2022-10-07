@@ -23,7 +23,8 @@ def main(input_filepath, output_filepath):
         'Unnamed: 0',
         'index',
         'werf',
-        'hgv'
+        'hgv',
+        'fc'
     ]
     cat_cols = [
         'blue',
@@ -41,11 +42,14 @@ def main(input_filepath, output_filepath):
                     .pipe(change_value_colm, colums=cat_cols)
                     .pipe(print_shape, msg=' Shape after change values of categorical cols')
                     .pipe(to_categorical, categorical_cols=cat_cols)
-
-                    # .pipe(encode_categorical)
-                    # .pipe(print_shape, msg=' Shape after encode categorical cols')
                     )
-    print('')
+
+    x_train = process_data.drop("price_range", axis=1)
+    y_train = process_data["price_range"]
+
+    x_train.to_parquet(
+        f'{output_filepath}/x_train_model_input.parquet', index=False)
+    y_train.to_csv(f'{output_filepath}/y_train_model_input.csv', index=False)
 
 
 def print_shape(data: pd.DataFrame, msg: str = 'Shape ='):
