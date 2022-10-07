@@ -7,11 +7,11 @@ from pathlib import Path
 import numpy as np
 # libraries to import function from other folder
 import sys
+# from sys import path 
 import os
-sys.path.append(os.path.abspath('src/'))
-
+sys.path.append( os.path.abspath('../../') )
+#path.append("../../..")
 from src.features.build_features import (print_shape, to_categorical, drop_cols, change_value_colm)
-
 
 def main(input_filepath, output_filepath, input_test_filepath, report_filepath):
     """ Runs model training scripts to turn processed data from (../processed) into
@@ -35,15 +35,16 @@ def main(input_filepath, output_filepath, input_test_filepath, report_filepath):
 
     # test predictions
 
-    x_test = pd.read_csv(f"{input_test_filepath}/x_test.csv")
+    x_test = pd.read_parquet(f"{input_test_filepath}/x_test.parquet")
     y_test = pd.read_csv(f"{input_test_filepath}/y_test.csv")
 
     test = pd.concat([x_test, y_test], axis=1)
 
+    
     test_eval = feature_process(test)
-
-    x_test_model = test_eval.drop("readmitted", axis=1)
-    y_test_model = test_eval["readmitted"]
+ 
+    x_test_model = test_eval.drop("price_range", axis=1)
+    y_test_model = test_eval["price_range"]
 
     y_test_pred = model.predict(x_test_model)
 
