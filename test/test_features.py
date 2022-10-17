@@ -2,7 +2,7 @@ import pytest
 import pandas as pd
 import numpy as np
 
-# from src.features.build_features import
+from src.features.build_features import change_value_colm
 
 # load data
 
@@ -24,3 +24,24 @@ def test_data(data_read):
     columns = data_read.columns
     assert len(columns) == 24
     assert set(columns_name) == set(columns)
+    
+    
+
+def test_encoding_columns(data_read):
+    cat_cols = [
+        'blue',
+        'dual_sim',
+        'four_g',
+        'three_g',
+        'touch_screen',
+        'wifi',
+    ]
+
+    data = change_value_colm(data_read, cat_cols)
+    
+    assert list(data['blue'].unique()) == ['0', '1']
+    assert list(data['dual_sim'].unique()) == ['1', '0']
+    assert list(data['four_g'].unique()) == ['0', '1']
+    assert list(data['three_g'].unique()) == ['0', '1']
+    assert list(data['touch_screen'].unique()) == ['0', '1']
+    assert list(data['wifi'].unique()) == ['0', '1']
