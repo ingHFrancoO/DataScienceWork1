@@ -6,13 +6,10 @@ from src.data.preprocessing import drop_row_with_nan
 from src.features.build_features import change_value_colm
 
 # load data
-
-
 @pytest.fixture
 def data_read():
     data_test = pd.read_parquet('data/interim/x_train.parquet')
     return data_test
-
 
 def test_data(data_read):
     columns_name = [
