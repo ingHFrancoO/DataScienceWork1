@@ -2,6 +2,7 @@ import pytest
 import pandas as pd
 import numpy as np
 
+from src.data.preprocessing import drop_row_with_nan
 from src.features.build_features import change_value_colm
 
 # load data
@@ -25,7 +26,10 @@ def test_data(data_read):
     assert len(columns) == 24
     assert set(columns_name) == set(columns)
     
+def test_no_null (data_read):
+    data = drop_row_with_nan(data_read)
     
+    assert data.isnull().sum().sum() == 0
 
 def test_encoding_columns(data_read):
     cat_cols = [
